@@ -25,10 +25,16 @@ func main() {
 	u := &User{Num: 1}
 	u1 := &User{Num: 1000}
 	u2 := &User{Num: 10000}
-
+	/**
+	RecycleTask
+	*/
 	myTask.RegistRecycleTask(2, u)
 	myTask.RegistRecycleTask(3, u1)
 	myTask.RegistRecycleTask(4, u2)
+	/**
+	OnceTask
+	*/
+	myTask.RegistTask(1515058675, &User{Num: 0})
 
 	for {
 

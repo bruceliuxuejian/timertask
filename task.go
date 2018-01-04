@@ -61,7 +61,6 @@ func (manager *TaskManager) RegistTask(executeTime int64, payload TaskPayload) i
 func (manager *TaskManager) RegistRecycleTask(recycleTime int64, payload TaskPayload) int64 {
 	newId := atomic.AddInt64(&manager.taskID, 1)
 	task := &Task{id: newId, recycleTime: recycleTime, Payload: payload, executeTime: getTimestamp() + recycleTime, recycleNum: 1}
-	fmt.Println("executeTime", task.executeTime)
 	manager.taskChan <- task
 	return newId
 }

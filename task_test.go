@@ -8,14 +8,8 @@ type Task struct {
 	Num int
 }
 
-func (u *Task) Before() {
-	u.Num++
-}
 func (u *Task) Doing() {
 	fmt.Println(u.Num)
-}
-func (u *Task) Finish() {
-
 }
 
 func main() {

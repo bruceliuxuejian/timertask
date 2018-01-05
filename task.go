@@ -113,9 +113,7 @@ func (manager *TaskManager) runTasks() {
 			if !ok {
 				continue
 			}
-			manager.beforeTask(task)
 			manager.doTask(task)
-			manager.finishTask(task)
 			if task.recycleTime <= 0 {
 				delete(manager.taskMap, task.id)
 			} else {
@@ -158,12 +156,6 @@ func (manager *TaskManager) cancelTask(taskId int64) {
 }
 func (manager *TaskManager) doTask(task *Task) {
 	task.Payload.Doing()
-}
-func (manager *TaskManager) beforeTask(task *Task) {
-	task.Payload.Before()
-}
-func (manager *TaskManager) finishTask(task *Task) {
-	task.Payload.Finish()
 }
 func getTimestamp() int64 {
 	return time.Now().Unix()

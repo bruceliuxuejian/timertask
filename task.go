@@ -7,9 +7,7 @@ import (
 )
 
 type TaskPayload interface {
-	Before()
 	Doing()
-	Finish()
 }
 
 type Task struct {

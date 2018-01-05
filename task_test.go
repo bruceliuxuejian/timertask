@@ -1,30 +1,29 @@
-package main
+package timertask
 
 import (
 	"fmt"
-	"task"
 )
 
-type User struct {
+type Task struct {
 	Num int
 }
 
-func (u *User) Before() {
+func (u *Task) Before() {
 	u.Num++
 }
-func (u *User) Doing() {
+func (u *Task) Doing() {
 	fmt.Println(u.Num)
 }
-func (u *User) Finish() {
+func (u *Task) Finish() {
 
 }
 
 func main() {
 
-	myTask := task.NewTask(1)
-	u := &User{Num: 1}
-	u1 := &User{Num: 1000}
-	u2 := &User{Num: 10000}
+	myTask := NewTaskManager(1)
+	u := &Task{Num: 1}
+	u1 := &Task{Num: 1000}
+	u2 := &Task{Num: 10000}
 	/**
 	RecycleTask
 	*/
@@ -34,9 +33,6 @@ func main() {
 	/**
 	OnceTask
 	*/
-	myTask.RegistTask(1515058675, &User{Num: 0})
+	myTask.RegistTask(1515058675, &Task{Num: 0})
 
-	for {
-
-	}
 }

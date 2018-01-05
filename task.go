@@ -1,4 +1,4 @@
-package task
+package timertask
 
 import (
 	"fmt"
@@ -32,7 +32,8 @@ type TaskManager struct {
 	cancelMap             map[int64]struct{}
 }
 
-func NewTask(timeInterval time.Duration) *TaskManager {
+// Checktime
+func NewTaskManager(timeInterval time.Duration) *TaskManager {
 	tmranager := new(TaskManager)
 	if timeInterval <= 0 {
 		timeInterval = 1
@@ -52,12 +53,16 @@ func (manager *TaskManager) loding(timeInterval time.Duration) {
 	manager.lastExecutedTimestamp = getTimestamp()
 	go manager.taskRoutine()
 }
+
+// executeTime: time stamp
 func (manager *TaskManager) RegistTask(executeTime int64, payload TaskPayload) int64 {
 	newId := atomic.AddInt64(&manager.taskID, 1)
 	task := &Task{id: newId, executeTime: executeTime, Payload: payload}
 	manager.taskChan <- task
 	return newId
 }
+
+// recycleTime: Exact to the second
 func (manager *TaskManager) RegistRecycleTask(recycleTime int64, payload TaskPayload) int64 {
 	newId := atomic.AddInt64(&manager.taskID, 1)
 	task := &Task{id: newId, recycleTime: recycleTime, Payload: payload, executeTime: getTimestamp() + recycleTime, recycleNum: 1}

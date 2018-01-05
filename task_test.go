@@ -4,20 +4,20 @@ import (
 	"fmt"
 )
 
-type Task struct {
+type TaskTest struct {
 	Num int
 }
 
-func (u *Task) Doing() {
+func (u *TaskTest) Doing() {
 	fmt.Println(u.Num)
 }
 
 func main() {
 
 	myTask := NewTaskManager(1)
-	u := &Task{Num: 1}
-	u1 := &Task{Num: 1000}
-	u2 := &Task{Num: 10000}
+	u := &TaskTest{Num: 1}
+	u1 := &TaskTest{Num: 1000}
+	u2 := &TaskTest{Num: 10000}
 	/**
 	RecycleTask
 	*/
@@ -27,6 +27,6 @@ func main() {
 	/**
 	OnceTask
 	*/
-	myTask.RegistTask(1515058675, &Task{Num: 0})
+	myTask.RegistTask(1515058675, &TaskTest{Num: 0})
 
 }
